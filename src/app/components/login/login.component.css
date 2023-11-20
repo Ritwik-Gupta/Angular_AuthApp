@@ -1,0 +1,20 @@
+div span i {
+  cursor: pointer;
+}
+
+div.input-field i {
+  position: absolute;
+  margin: 10px 10px 0px 10px;
+}
+
+div.input-field input {
+  padding-left: 40px;
+}
+
+a {
+  text-decoration: none;
+}
+
+small {
+  color: red;
+}

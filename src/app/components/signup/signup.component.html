@@ -1,0 +1,62 @@
+<div class="outer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-4 col-md-7 offset-md-2" style="margin-top: 12vh;">
+        <div class="card shadow-lg">
+          <div class="card-body">
+            <h2 class="card-title mb-4 text-center">Register</h2>
+            <form [formGroup]="registrationForm">
+              <div class="mb-4 input-field">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" class="form-control" placeholder="First Name" formControlName="fname">
+                <span *ngIf="fname?.invalid && fname?.touched">
+                  <small *ngIf="fname?.errors['required']">First Name is required</small>
+                </span>
+              </div>
+              <div class="mb-4 input-field">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" class="form-control" placeholder="Last Name" formControlName="lname">
+                <span *ngIf="lname?.invalid && lname?.touched">
+                  <small *ngIf="lname?.errors['required']">Last Name is required</small>
+                </span>
+              </div>
+              <div class="mb-4 input-field">
+                <i class="fa-solid fa-user"></i>
+                <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                <span *ngIf="email?.invalid && email?.touched">
+                  <small *ngIf="email?.errors['required']">Email is required</small>
+                  <small *ngIf="email?.errors['email']">Provide valid email id</small>
+                </span>
+              </div>
+              <div class="mb-4 input-field">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" class="form-control" placeholder="Username" formControlName="username">
+                <span *ngIf="username?.invalid && username?.touched">
+                  <small *ngIf="username?.errors['required']">Username is required</small>
+                  <small *ngIf="username?.errors['minLength'] || username?.errors['maxLength']">Username should be between 4-12 characters</small>
+                </span>
+              </div>
+              <div class="mb-1 input-field">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                <span *ngIf="password?.invalid && password?.touched">
+                  <small *ngIf="password?.errors['required']">Password is required</small>
+                </span>
+              </div>
+              <div class="d-grid mt-3">
+                <button class="btn btn-primary btn-md float-end px-5">Sign Up</button>
+              </div>
+            </form>
+            <p class="text-center mt-2">Existing User? <a routerLink="/login">Login</a></p>
+            <hr>
+            <div class="d-flex flex-row justify-content-center">
+              <div class="mx-3"><span><i class="fa-brands fa-facebook fa-2x"></i></span></div>
+              <div><span><i class="fa-brands fa-google fa-2x"></i></span></div>
+              <div class="mx-3"><span><i class="fa-brands fa-linkedin fa-2x"></i></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

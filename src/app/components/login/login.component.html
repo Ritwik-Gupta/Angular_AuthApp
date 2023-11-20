@@ -1,0 +1,36 @@
+<div class="outer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-4 col-md-7 offset-md-2" style="margin-top: 12vh;">
+        <div class="card shadow-lg">
+          <div class="card-body">
+            <h2 class="card-title mb-4 text-center">Login</h2>
+            <form [formGroup]="userLoginForm">
+              <div class="mb-4 input-field">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" class="form-control" placeholder="Username" formControlName="username">
+                <small *ngIf="username?.touched && username?.invalid">Please provide username</small>
+              </div>
+              <div class="mb-1 input-field">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                <small *ngIf="password?.touched && password?.invalid">Please provide password</small>
+              </div>
+              <small><a href="" style="text-decoration: none;">Forgot Password?</a></small>
+              <div class="d-grid mt-3">
+                <button class="btn btn-primary btn-md float-end px-5">Login</button>
+              </div>
+            </form>
+            <p class="text-center mt-2">New User? <a routerLink="/signup">Register</a></p>
+            <hr>
+            <div class="d-flex flex-row justify-content-center">
+              <div class="mx-3"><span><i class="fa-brands fa-facebook fa-2x"></i></span></div>
+              <div><span><i class="fa-brands fa-google fa-2x"></i></span></div>
+              <div class="mx-3"><span><i class="fa-brands fa-linkedin fa-2x"></i></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

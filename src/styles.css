@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+
+.outer {
+  height: 100vh;
+  background-image: linear-gradient(to bottom right, #25CCF7, #7CEC9F);
+}
