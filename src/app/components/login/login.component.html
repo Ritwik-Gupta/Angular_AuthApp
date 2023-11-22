@@ -18,7 +18,7 @@
               </div>
               <small><a href="" style="text-decoration: none;">Forgot Password?</a></small>
               <div class="d-grid mt-3">
-                <button class="btn btn-primary btn-md float-end px-5">Login</button>
+                <button class="btn btn-primary btn-md float-end px-5" (click)="onUserLogin()" [disabled]="userLoginForm.invalid">Login</button>
               </div>
             </form>
             <p class="text-center mt-2">New User? <a routerLink="/signup">Register</a></p>
