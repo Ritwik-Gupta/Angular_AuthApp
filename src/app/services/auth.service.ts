@@ -1,5 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
+import { User, UserLogin } from '../models/user';
+import { catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,12 @@ export class AuthService{
 
   baseUrl: string = "https://localhost:7027/api/Users"
 
-  registerUser(userObj: object) {
-    this.httpclient.post(this.baseUrl, userObj).subscribe(response => {
-      return response;
-    })
+  registerUser(userObj: User) {
+    return this.httpclient.post(this.baseUrl+"/add-user", userObj);
+  }
+
+  userLogin(userObj: UserLogin) {
+    return this.httpclient.post(this.baseUrl+"/login", userObj);
   }
 
 }
