@@ -40,6 +40,9 @@ export class LoginComponent {
         next: (data:any) => {
           this.toastr.success(data.message)
           localStorage.setItem("loggedInUser", userObj.username)
+          localStorage.setItem("token", data.token)
+
+          console.log(data.token);
           this.router.navigate(["dashboard"])
         },
         error: (err) => this.toastr.error(err.error.message ?? err.message)

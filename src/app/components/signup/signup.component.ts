@@ -49,13 +49,15 @@ export class SignupComponent {
     if(this.registrationForm.valid) {
       let userObj = this.mapper.mapToUserDto(this.registrationForm.value)
       this.authService.registerUser(userObj).subscribe({
-        next: (data:any) => this.toastr.success(data.message),
-        error: (err) => this.toastr.error(err.message ?? "Unknown error")
+        next: (data:any) => {
+          this.toastr.success(data.message)
+          this.router.navigate(["login"]);
+        },
+        error: (err) => this.toastr.error(err.error.message ?? "Unknown error")
       });
     }
 
     this.registrationForm.reset();
-    this.router.navigate(["login"]);
   }
 
 }
