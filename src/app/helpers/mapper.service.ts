@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { User, UserLogin } from '../models/user';
+import { User, UserLogin, UserView } from '../models/user';
+import { Role } from '../models/role';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class MapperService {
       lname : userObj.lname,
       email : userObj.email,
       username: userObj.username,
-      password : userObj.password
+      password : userObj.password,
+      role : userObj.role
     }
     return mappedUser;
   }
@@ -23,6 +25,18 @@ export class MapperService {
     let mappedUser: UserLogin = {
       username : userObj.username,
       password : userObj.password
+    }
+    return mappedUser;
+  }
+
+  mapToUserViewDto(userObj: any): UserView {
+    let mappedUser: UserView = {
+      id : userObj.id,
+      fname : userObj.fname,
+      lname : userObj.lname,
+      email : userObj.email,
+      username: userObj.username,
+      role : userObj.role
     }
     return mappedUser;
   }

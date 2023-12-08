@@ -21,7 +21,7 @@
                 </span>
               </div>
               <div class="mb-4 input-field">
-                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-envelope"></i>
                 <input type="email" class="form-control" placeholder="Email" formControlName="email">
                 <span *ngIf="email?.invalid">
                   <small *ngIf="email?.errors['required'] && email?.touched">Email is required</small>
@@ -36,7 +36,7 @@
                   <small *ngIf="(username?.errors['minlength'] || username?.errors['maxlength']) && username?.dirty">Username should be between 4-12 characters</small>
                 </span>
               </div>
-              <div class="mb-1 input-field">
+              <div class="mb-4 input-field">
                 <i class="fa-solid fa-lock"></i>
                 <input type="password" class="form-control" placeholder="Password" formControlName="password">
                 <span *ngIf="password?.invalid">
@@ -44,6 +44,15 @@
                   <small *ngIf="(password?.errors['minlength'] || password?.errors['maxlength']) && password?.dirty">Password should be between 8-12 characters</small>
                   <small *ngIf="password?.errors['pattern'] && password?.touched">Only aplhanumeric characters allowed</small>
                 </span>
+              </div>
+              <div class="mb-1 input-field">
+                <i class="fa-solid fa-suitcase"></i>
+                <select class="form-select" formControlName="role">
+                  <option hidden>Select Role</option>
+                  <option>{{AppRoles.User}}</option>
+                  <option>{{AppRoles.Admin}}</option>
+                  <option [value]="AppRoles.Visitor">View Only</option>
+                </select>
               </div>
               <div class="d-grid mt-3">
                 <button class="btn btn-primary btn-md float-end px-5" type="submit" [disabled]="registrationForm.invalid" (click)="onUserRegistration()">Sign Up</button>

@@ -1,10 +1,49 @@
-
+<app-navbar></app-navbar>
 <div class="container">
   <div class="row">
-      <div class="col-4 offset-4">
-        <h1>Welcome {{username}}</h1>
+      <div class="col-6 offset-3">
+        <h1 style="text-align: center;">Welcome {{username}} <span class="text-muted">({{role}})</span></h1>
       </div>
   </div>
-  <!-- <button (click)="getUsers()">Get Users</button> -->
-  <button class="btn btn-primary float-end" (click)="logout()">Logout</button>
+  <div class="mt-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Action Description</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Returns the list of all the user details registered in the application<br>
+            <span class="text-muted">Accessible by - User, Admin, View Only</span>
+          </td>
+          <td>
+            <button class="btn btn-primary" routerLink="/all-users">Get All Users</button><br><br>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Allows the logged in user to view and update their own profile details <br>
+            <span class="text-muted">Accessible by - User, Admin</span>
+          </td>
+          <td>
+            <button class="btn btn-primary" (click)="editMyProfile()">View/Edit My Profile</button><br><br>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Allows the logged in user to delete/update the profile details of all users<br>
+            <span class="text-muted">Accessible by - Admin</span>
+          </td>
+          <td>
+            <button class="btn btn-primary" routerLink="/modify-users" >Update/Delete Other Users</button><br><br>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
 </div>

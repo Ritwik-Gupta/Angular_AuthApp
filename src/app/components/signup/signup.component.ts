@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MapperService } from 'src/app/helpers/mapper.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Role } from 'src/app/models/role';
 
 @Component({
   selector: 'app-signup',
@@ -11,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
+  public AppRoles = Role;
 
   constructor(private toastr: ToastrService,
     private authService: AuthService,
@@ -19,11 +21,12 @@ export class SignupComponent {
 
   //Define the form here
   registrationForm = new FormGroup({
-    'fname': new FormControl('', [Validators.required]),
-    'lname': new FormControl('', [Validators.required]),
-    'email': new FormControl('', [Validators.required, Validators.email]),
-    'username': new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(12)]),
-    'password': new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(12), Validators.pattern("^[a-zA-Z0-9_]*$")])
+    'fname': new FormControl("",[Validators.required]),
+    'lname': new FormControl("",[Validators.required]),
+    'email': new FormControl("",[Validators.required, Validators.email]),
+    'role' : new FormControl("Select Role",[Validators.required]),
+    'username': new FormControl("",[Validators.required, Validators.minLength(4), Validators.maxLength(12)]),
+    'password': new FormControl("",[Validators.required, Validators.minLength(8), Validators.maxLength(12), Validators.pattern("^[a-zA-Z0-9_]*$")])
   })
 
   //getters for the formcontrol
@@ -35,6 +38,9 @@ export class SignupComponent {
   }
   get email() {
     return this.registrationForm.get('email');
+  }
+  get role() {
+    return this.registrationForm.get('role');
   }
   get username() {
     return this.registrationForm.get('username');
@@ -52,8 +58,7 @@ export class SignupComponent {
         next: (data:any) => {
           this.toastr.success(data.message)
           this.router.navigate(["login"]);
-        },
-        error: (err) => this.toastr.error(err.error.message ?? "Unknown error")
+        }
       });
     }
 

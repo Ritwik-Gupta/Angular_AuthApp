@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<div class="col-6 offset-3 mt-5">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="crad-title mb-4">All Users</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">UserId</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Username</th>
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.fname}}</td>
+            <td>{{user.lname}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.role}}</td>
+            <td>
+              <span class="mx-2"><i class="fa-solid fa-pen-to-square" style="color: blue;" type=button (click)="editOtherUser(user.id)"></i></span>
+              <span class="mx-2"><i class="fa-solid fa-trash" style="color: red;" type=button (click)="onDeleteOtherUser(user.id)" ></i></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

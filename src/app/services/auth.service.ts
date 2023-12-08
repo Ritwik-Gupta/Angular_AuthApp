@@ -2,13 +2,17 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { User, UserLogin } from '../models/user';
 import { catchError } from 'rxjs';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService{
 
-  constructor(private httpclient: HttpClient) { }
+  constructor(private httpclient: HttpClient,
+    private router: Router,
+    private toastr: ToastrService) { }
 
   baseUrl: string = "https://localhost:7027/api/Users"
 
@@ -20,12 +24,6 @@ export class AuthService{
     return this.httpclient.post(this.baseUrl+"/login", userObj);
   }
 
-  getUsers() {
-    const headers =
-      new HttpHeaders()
-    return this.httpclient.get(this.baseUrl+"/get-users")
-  }
-
   isLoggedIn() {
     let exists = localStorage.getItem("token");
     if(exists){
@@ -34,8 +32,43 @@ export class AuthService{
     return false;
   }
 
-  logout() {
-    localStorage.clear();
+  getAuthToken() {
+    return localStorage.getItem("token");
   }
 
+  setAuthToken(token: string) {
+    localStorage.setItem("token", token);
+  }
+
+  getRefreshToken() {
+    return localStorage.getItem("refreshToken");
+  }
+
+  setRefreshToken(refreshToken: string) {
+    localStorage.setItem("refreshToken", refreshToken);
+  }
+
+  setLoggedInUserDetails(id: string, username: string, role: string) {
+    localStorage.setItem("id", id);
+    localStorage.setItem("username", username);
+    localStorage.setItem("role",role);
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(["login"]);
+  }
+
+  tryRefreshToken(userId: number) {
+    return this.httpclient.get(this.baseUrl + `/try-refresh-token?userId=${userId}`);
+  }
+
+  setRefreshStatus(status: boolean) {
+    localStorage.setItem("isRefresh", status == true ? "true" : "false");
+  }
+
+  getRefreshStatus(): boolean {
+    return localStorage.getItem("isRefresh") == "true" ? true : false;
+
+  }
 }

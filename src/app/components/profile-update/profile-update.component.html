@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+<div class="col-4 offset-4 mt-5">
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title mb-4">Edit User</h3>
+      <form [formGroup]="userDetailsUpdateForm">
+        <div class="row mb-2">
+          <div class="col">
+            <label for="fname" class="mb-1"><strong>First Name</strong></label>
+            <input type="text" id="fname" class="form-control" formControlName="fname">
+            <span *ngIf="!fname.valid && fname.touched">
+              <small>Field is required</small>
+            </span>
+          </div>
+          <div class="col">
+            <label for="lname" class="mb-1"><strong>Last Name</strong></label>
+            <input type="text" id="lname" class="form-control" formControlName="lname">
+            <span *ngIf="!lname.valid && lname.touched">
+              <small>Field is required</small>
+            </span>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col">
+            <label for="username" class="mb-1"><strong>Username</strong></label>
+            <input type="text" id="username" class="form-control" formControlName="username">
+            <span *ngIf="!username.valid && username.touched">
+              <small>Field is required</small>
+            </span>
+          </div>
+          <div class="col">
+            <label for="email" class="mb-1"><strong>Email</strong></label>
+            <input type="email" id="email" class="form-control" formControlName="email">
+            <span *ngIf="!email.valid && email.touched">
+              <small *ngIf="email.errors['required']">Field is required</small>
+              <small *ngIf="email.errors['email']">Invalid email id</small>
+            </span>
+          </div>
+        </div>
+        <div class="col-6 mb-3">
+          <label for="role" class="mb-1"><strong>Role</strong></label>
+          <select class="form-select" formControlName="role">
+            <option [selected]="role.value === 'Admin'">Admin</option>
+            <option [selected]="role.value === 'User'">User</option>
+            <option [selected]="role.value === 'Visitor'" [value]="AppRoles.Visitor">View Only</option>
+          </select>
+        </div>
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-primary col-5" [disabled]="userDetailsUpdateForm.invalid" (click)="UpdateUser()">Update</button>
+          <button class="btn btn-secondary col-5" routerLink="/dashboard">Cancel</button>
+        </div>
+      </form>
+  </div>
+</div>

@@ -15,7 +15,8 @@ export class LoginComponent {
   constructor(private service: AuthService,
     private mapper: MapperService,
     private toastr: ToastrService,
-    private router: Router) {}
+    private router: Router,
+    private authService: AuthService) {}
 
   //create the form group
   userLoginForm = new FormGroup({
@@ -39,13 +40,12 @@ export class LoginComponent {
       this.service.userLogin(userObj).subscribe({
         next: (data:any) => {
           this.toastr.success(data.message)
-          localStorage.setItem("loggedInUser", userObj.username)
-          localStorage.setItem("token", data.token)
+          this.authService.setAuthToken(data.token);
+          this.authService.setRefreshToken(data.refreshToken)
+          this.authService.setLoggedInUserDetails(data.id, data.username, data.role)
 
-          console.log(data.token);
           this.router.navigate(["dashboard"])
-        },
-        error: (err) => this.toastr.error(err.error.message ?? err.message)
+        }
       });
     }
 
